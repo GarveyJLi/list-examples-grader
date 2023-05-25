@@ -1,5 +1,10 @@
-CPATH='.;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar'
-RPATH='.;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar'
+# for windows
+# CPATH='.;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar'
+# RPATH='.;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar'
+
+# for mac/linux
+CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
+# if not on windows
 
 rm -rf student-submission
 rm -rf grading-area
@@ -28,7 +33,12 @@ cp -r student-submission/ListExamples.java TestListExamples.java lib grading-are
 cd grading-area
 
 javac -cp $CPATH *.java
-java -cp $RPATH org.junit.runner.JUnitCore TestListExamples > output.txt
+# Change $RPATH to $CPATH if not runninf on windows 
+
+# for windows
+#java -cp $RPATH org.junit.runner.JUnitCore TestListExamples > output.txt
+# for mac/linux
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > output.txt
 
 grade_line="$(grep 'Tests run: ' output.txt | grep -o -E '[0-9]+')"
 # grade_line="$(grep 'FAILURES!!!')"
