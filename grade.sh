@@ -30,7 +30,6 @@ cd grading-area
 javac -cp $CPATH *.java
 java -cp $RPATH org.junit.runner.JUnitCore TestListExamples > output.txt
 
-#  grade_line="$(grep 'Tests run: ' output.txt | grep -o -E '[0-9]+')"
-grade_line="$(grep '\d+. \b(\w+)\b' output.txt)"
+grade_line="$(grep 'Tests run: ' output.txt | grep -o -E '[0-9]+')"
+# grade_line="$(grep 'FAILURES!!!')"
 echo $grade_line
-
